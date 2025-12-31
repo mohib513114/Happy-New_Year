@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy New Year 2026 ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(120deg, #ff5f9e, #ff9a9e);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+.container { padding: 40px 16px 80px; }
+
+.heart { font-size: 56px; animation: heartbeat 1.5s infinite; }
+
+h1 { font-size: 2.4rem; margin: 10px 0; }
+h2 { font-size: 1.2rem; font-weight: 300; }
+
+.message {
+    margin: 28px auto;
+    padding: 22px;
+    max-width: 90%;
+    background: rgba(255,255,255,0.18);
+    border-radius: 18px;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Continuous Smooth Slider */
+.slider {
+  width: 90%;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+.slides {
+  display: flex;
+  width: calc(200%); /* because we repeat images for smooth loop */
+  animation: slide 20s linear infinite;
+}
+
+.slides img {
+    width: 100%;
+    object-fit: cover;
+    height: 465px;
+    border-radius: 18px;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+    0%{transform:scale(1);}25%{transform:scale(1.1);}50%{transform:scale(1);}75%{transform:scale(1.1);}
+}
+
+/* iPhone XS */
+@media (max-width: 375px){
+  .slides img { height: 220px; }
+  h1 { font-size: 2rem; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<audio id="bgMusic" autoplay loop playsinline>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <div class="heart">❤️</div>
+
+    <h1>Happy New Year 2026</h1>
+    <h2>To the Love of My Life</h2>
+
+    <div class="message">
+        <p>As we step into <strong>2026</strong>, my heart is full of gratitude for these beautiful <strong>5 years</strong> with you.</p>
+        <p>You are my happiness, my peace, and my forever.</p>
+        <p>Here’s to more love, more memories, and many more years together ❤️</p>
+        <p><strong>I love you. Always.</strong></p>
+    </div>
+
+    <h2>Our Memories ✨</h2>
+
+    <div class="slider">
+      <div class="slides">
+        <img src="photo1.jpeg">
+        <img src="photo2.jpeg">
+        <img src="photo3.jpeg">
+        <img src="photo4.jpeg">
+        <!-- Repeat for continuous effect -->
+        <img src="photo1.jpeg">
+        <img src="photo2.jpeg">
+        <img src="photo3.jpeg">
+        <img src="photo4.jpeg">
+      </div>
+    </div>
+
+    <footer>Made with ❤️ by Mohib <br> New Year Night • 2026</footer>
+</div>
+
+<script>
+/* ========= MUSIC ========= */
+const music = document.getElementById("bgMusic");
+music.volume = 0.7;
+window.addEventListener("load",()=>{
+    const playAttempt = music.play();
+    if(playAttempt!==undefined){
+        playAttempt.catch(()=>{
+            document.addEventListener("touchstart",()=>music.play(),{once:true});
+            document.addEventListener("click",()=>music.play(),{once:true});
+        });
+    }
+});
+
+/* ========= FIREWORKS + FLOWERS ========= */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+function resize(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
+resize(); window.addEventListener("resize",resize);
+
+let rockets=[], particles=[];
+
+function Rocket(){
+    this.x=Math.random()*canvas.width;
+    this.y=canvas.height;
+    this.speed=Math.random()*3+6;
+    this.explodeY=Math.random()*canvas.height/2+80;
+    this.color=`hsl(${Math.random()*360},100%,60%)`;
+}
+
+Rocket.prototype.update=function(){
+    this.y-=this.speed;
+    if(this.y<=this.explodeY){ explode(this.x,this.y,this.color); return true; }
+    return false;
+}
+
+Rocket.prototype.draw=function(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,3,0,Math.PI*2);
+    ctx.fillStyle=this.color;
+    ctx.fill();
+}
+
+/* Explosion with flowers/petals */
+function explode(x,y,color){
+    for(let i=0;i<60;i++){
+        const isFlower=Math.random()<0.3; // 30% chance flower
+        particles.push({
+            x,y,
+            vx:(Math.random()-0.5)*6,
+            vy:(Math.random()-0.5)*6,
+            life:100,
+            color:isFlower?"pink":color,
+            radius:isFlower?Math.random()*4+2:Math.random()*2+1
+        });
+    }
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    rockets.forEach((r,i)=>{
+        if(r.update()) rockets.splice(i,1);
+        else r.draw();
+    });
+
+    particles.forEach((p,i)=>{
+        p.x+=p.vx;
+        p.y+=p.vy;
+        p.life--;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fillStyle=p.color;
+        ctx.fill();
+        if(p.life<=0) particles.splice(i,1);
+    });
+
+    requestAnimationFrame(animate);
+}
+
+setInterval(()=>rockets.push(new Rocket()),900);
+animate();
+</script>
+
+</body>
+</html>
