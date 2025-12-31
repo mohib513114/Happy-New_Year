@@ -1,273 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Happy New Year 2026 ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy New Year 2026 ❤️</title>
 
-<style>
-* { box-sizing: border-box; }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: linear-gradient(120deg, #ff5f9e, #ff9a9e);
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-}
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(120deg, #ff5f9e, #ff9a9e);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
 
-canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
 
-.container { padding: 40px 16px 80px; }
+        .container {
+            padding: 40px 16px 80px;
+        }
 
-.heart { font-size: 56px; animation: heartbeat 1.5s infinite; }
+        .heart {
+            font-size: 56px;
+            animation: heartbeat 1.5s infinite;
+        }
 
-h1 { font-size: 2.4rem; margin: 10px 0; }
-h2 { font-size: 1.2rem; font-weight: 300; }
+        h1 {
+            font-size: 2.4rem;
+            margin: 10px 0;
+        }
 
-.message {
-    margin: 28px auto;
-    padding: 50px;
-    max-width: 90%;
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 18px;
-    line-height: 2.4;
-    font-size: 17px;
-    font-style: italic;
-    text-align: center;
-}
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
 
-/* Continuous Smooth Slider */
-.slider {
-  width: 90%;
-  margin: 30px auto;
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
-}
+        .message {
+            margin: 28px auto;
+            padding: 50px;
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 18px;
+            line-height: 2.4;
+            font-size: 17px;
+            font-style: italic;
+            text-align: center;
+        }
 
-.slides {
-  display: flex;
-  width: calc(200%);
-  animation: scroll 20s linear infinite;
-}
+        /* Continuous Smooth Slider */
+        .slider {
+            width: 90%;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+        }
 
-.slides img {
-  width: 100%; /* 4 images visible */
-  height: 417px;
-  object-fit: cover;
-  border-radius: 18px;
-}
+        .slides {
+            display: flex;
+            width: calc(200%);
+            animation: scroll 20s linear infinite;
+        }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+        .slides img {
+            width: 100%;
+            /* 4 images visible */
+            height: 417px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
 
-/* Heartbeat */
-@keyframes heartbeat {
-    0%{transform:scale(1);}25%{transform:scale(1.1);}50%{transform:scale(1);}75%{transform:scale(1.1);}
-}
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
 
-/* iPhone XS */
-@media (max-width: 375px){
-  .slides img { height: 220px; }
-  h1 { font-size: 2rem; }
-}
-</style>
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Heartbeat */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.1);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* iPhone XS */
+        @media (max-width: 375px) {
+            .slides img {
+                height: 220px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<canvas id="fireworks"></canvas>
+    <canvas id="fireworks"></canvas>
 
-<audio id="bgMusic" autoplay loop muted playsinline>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" autoplay loop muted playsinline>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="container">
-    <div class="heart">❤️</div>
+    <div class="container">
+        <div class="heart">❤️</div>
 
-    <h1>Happy New Year 2026</h1>
-    <h2>To the Love of My Life</h2>
+        <h1>Happy New Year 2026</h1>
+        <h2>To the Love of My Life</h2>
 
-    <div class="message">
-        Happy New Year, my love ❤️. Five years have passed, and every moment with you has been unforgettable. 
-        You’ve been my laughter, my comfort, and my home. In 2026, I promise to be there for you through everything — 
-        to hold your hand when life gets tough, to celebrate every joy with you, and to keep loving you more each day. 
-        You mean the world to me, and I can’t wait to make more beautiful memories together. This year, and every year, 
-        it’s you and me — always.
+        <div class="message">
+            <p>
+                Happy New Year, my love ❤️. Five years have passed, and every moment with you has been unforgettable.
+                You’ve been my laughter, my comfort, and my home. In 2026, I promise to be there for you through
+                everything —
+                to hold your hand when life gets tough, to celebrate every joy with you, and to keep loving you more
+                each day.
+                You mean the world to me, and I can’t wait to make more beautiful memories together. This year, and
+                every year,
+                it’s you and me — always.
+            </p>
+            <p><strong>I love you. Always.</strong></p>
+        </div>
+
+        <h2>Our Memories ✨</h2>
+
+        <div class="slider">
+            <div class="slides">
+                <img src="photo1.jpeg">
+                <img src="photo2.jpeg">
+                <img src="photo3.jpeg">
+                <img src="photo4.jpeg">
+                <!-- Repeat for seamless effect -->
+                <img src="photo1.jpeg">
+                <img src="photo2.jpeg">
+                <img src="photo3.jpeg">
+                <img src="photo4.jpeg">
+            </div>
+        </div>
+
+        <footer>Made with ❤️ by Mohib <br> New Year Night • 2026</footer>
     </div>
 
-    <h2>Our Memories ✨</h2>
-
-    <div class="slider">
-      <div class="slides">
-        <img src="photo1.jpeg">
-        <img src="photo2.jpeg">
-        <img src="photo3.jpeg">
-        <img src="photo4.jpeg">
-        <!-- Repeat for seamless effect -->
-        <img src="photo1.jpeg">
-        <img src="photo2.jpeg">
-        <img src="photo3.jpeg">
-        <img src="photo4.jpeg">
-      </div>
-    </div>
-
-    <footer>Made with ❤️ by Mohib <br> New Year Night • 2026</footer>
-</div>
-
-<script>
-/* ========= MUSIC AUTO-PLAY FIX ========= */
-const music = document.getElementById("bgMusic");
-music.volume = 0.7;
-window.addEventListener("load", ()=>{
-    music.muted = false; // unmute
-    const playPromise = music.play();
-    if(playPromise !== undefined){
-        playPromise.catch(()=>{
-            const playAudio = () => { music.play(); document.removeEventListener("touchstart", playAudio); document.removeEventListener("click", playAudio); }
-            document.addEventListener("touchstart", playAudio, {once:true});
-            document.addEventListener("click", playAudio, {once:true});
+    <script>
+        /* ========= MUSIC AUTO-PLAY FIX ========= */
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.7;
+        window.addEventListener("load", () => {
+            music.muted = false; // unmute
+            const playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    const playAudio = () => { music.play(); document.removeEventListener("touchstart", playAudio); document.removeEventListener("click", playAudio); }
+                    document.addEventListener("touchstart", playAudio, { once: true });
+                    document.addEventListener("click", playAudio, { once: true });
+                });
+            }
         });
-    }
-});
 
-/* ========= FIREWORKS + HEARTS + FLOATING LOVE ========= */
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
+        /* ========= FIREWORKS + HEARTS + FLOATING LOVE ========= */
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
 
-function resize(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
-resize(); window.addEventListener("resize",resize);
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize(); window.addEventListener("resize", resize);
 
-let rockets=[], particles=[], hearts=[];
+        let rockets = [], particles = [], hearts = [];
 
-/* Rocket Class */
-function Rocket(x, y, color){
-    this.x = x || Math.random()*canvas.width;
-    this.y = y || canvas.height;
-    this.speed = Math.random()*3+6;
-    this.explodeY = Math.random()*canvas.height/2+80;
-    this.color = color || `hsl(${Math.random()*360},100%,60%)`;
-}
+        /* Rocket Class */
+        function Rocket(x, y, color) {
+            this.x = x || Math.random() * canvas.width;
+            this.y = y || canvas.height;
+            this.speed = Math.random() * 3 + 6;
+            this.explodeY = Math.random() * canvas.height / 2 + 80;
+            this.color = color || `hsl(${Math.random() * 360},100%,60%)`;
+        }
 
-Rocket.prototype.update=function(){
-    this.y -= this.speed;
-    if(this.y <= this.explodeY){ explode(this.x,this.y,this.color); return true; }
-    return false;
-}
-Rocket.prototype.draw=function(){
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,3,0,Math.PI*2);
-    ctx.fillStyle=this.color;
-    ctx.fill();
-}
+        Rocket.prototype.update = function () {
+            this.y -= this.speed;
+            if (this.y <= this.explodeY) { explode(this.x, this.y, this.color); return true; }
+            return false;
+        }
+        Rocket.prototype.draw = function () {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
 
-/* Particle explosion with flowers/petals */
-function explode(x,y,color){
-    for(let i=0;i<60;i++){
-        const isFlower=Math.random()<0.3;
-        particles.push({
-            x,y,
-            vx:(Math.random()-0.5)*6,
-            vy:(Math.random()-0.5)*6,
-            life:100,
-            color:isFlower?"pink":color,
-            radius:isFlower?Math.random()*4+2:Math.random()*2+1
-        });
-    }
-}
+        /* Particle explosion with flowers/petals */
+        function explode(x, y, color) {
+            for (let i = 0; i < 60; i++) {
+                const isFlower = Math.random() < 0.3;
+                particles.push({
+                    x, y,
+                    vx: (Math.random() - 0.5) * 6,
+                    vy: (Math.random() - 0.5) * 6,
+                    life: 100,
+                    color: isFlower ? "pink" : color,
+                    radius: isFlower ? Math.random() * 4 + 2 : Math.random() * 2 + 1
+                });
+            }
+        }
 
-/* Floating hearts class */
-function FloatingHeart(){
-    this.x = Math.random()*canvas.width;
-    this.y = canvas.height + 20;
-    this.vx = (Math.random()-0.5)*1.5;
-    this.vy = -Math.random()*1.5 - 0.5;
-    this.size = Math.random()*8+6;
-    this.alpha = Math.random()*0.6+0.4;
-}
-FloatingHeart.prototype.update = function(){
-    this.x += this.vx;
-    this.y += this.vy;
-    this.alpha -= 0.002;
-    if(this.alpha <=0) return true;
-    return false;
-}
-FloatingHeart.prototype.draw = function(){
-    ctx.save();
-    ctx.globalAlpha = this.alpha;
-    ctx.beginPath();
-    ctx.moveTo(this.x,this.y);
-    ctx.bezierCurveTo(this.x,this.y-this.size/2,this.x+this.size,this.y-this.size/2,this.x,this.y);
-    ctx.bezierCurveTo(this.x-this.size,this.y+this.size/2,this.x,this.y+this.size/2,this.x,this.y);
-    ctx.fillStyle = "pink";
-    ctx.fill();
-    ctx.restore();
-}
+        /* Floating hearts class */
+        function FloatingHeart() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height + 20;
+            this.vx = (Math.random() - 0.5) * 1.5;
+            this.vy = -Math.random() * 1.5 - 0.5;
+            this.size = Math.random() * 8 + 6;
+            this.alpha = Math.random() * 0.6 + 0.4;
+        }
+        FloatingHeart.prototype.update = function () {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.alpha -= 0.002;
+            if (this.alpha <= 0) return true;
+            return false;
+        }
+        FloatingHeart.prototype.draw = function () {
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.bezierCurveTo(this.x, this.y - this.size / 2, this.x + this.size, this.y - this.size / 2, this.x, this.y);
+            ctx.bezierCurveTo(this.x - this.size, this.y + this.size / 2, this.x, this.y + this.size / 2, this.x, this.y);
+            ctx.fillStyle = "pink";
+            ctx.fill();
+            ctx.restore();
+        }
 
-/* Animate everything */
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+        /* Animate everything */
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    rockets.forEach((r,i)=>{
-        if(r.update()) rockets.splice(i,1);
-        else r.draw();
-    });
+            rockets.forEach((r, i) => {
+                if (r.update()) rockets.splice(i, 1);
+                else r.draw();
+            });
 
-    particles.forEach((p,i)=>{
-        p.x+=p.vx;
-        p.y+=p.vy;
-        p.life--;
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-        ctx.fillStyle=p.color;
-        ctx.fill();
-        if(p.life<=0) particles.splice(i,1);
-    });
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life--;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                if (p.life <= 0) particles.splice(i, 1);
+            });
 
-    hearts.forEach((h,i)=>{
-        if(h.update()) hearts.splice(i,1);
-        else h.draw();
-    });
+            hearts.forEach((h, i) => {
+                if (h.update()) hearts.splice(i, 1);
+                else h.draw();
+            });
 
-    requestAnimationFrame(animate);
-}
+            requestAnimationFrame(animate);
+        }
 
-/* Launch rockets and floating hearts */
-setInterval(()=>rockets.push(new Rocket()),900);
-setInterval(()=>hearts.push(new FloatingHeart()),200); // hearts spawn frequently
+        /* Launch rockets and floating hearts */
+        setInterval(() => rockets.push(new Rocket()), 900);
+        setInterval(() => hearts.push(new FloatingHeart()), 200); // hearts spawn frequently
 
-/* Launch rockets in heart/text shape */
-function launchHeartText(){
-    const text = "LOVE 2026";
-    ctx.font = "bold 60px Arial";
-    ctx.fillStyle = "white";
-    const metrics = ctx.measureText(text);
-    const startX = canvas.width/2 - metrics.width/2;
-    const startY = canvas.height/4;
+        /* Launch rockets in heart/text shape */
+        function launchHeartText() {
+            const text = "LOVE 2026";
+            ctx.font = "bold 60px Arial";
+            ctx.fillStyle = "white";
+            const metrics = ctx.measureText(text);
+            const startX = canvas.width / 2 - metrics.width / 2;
+            const startY = canvas.height / 4;
 
-    ctx.fillText(text,startX,startY);
-    const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
-    const pixels = imageData.data;
+            ctx.fillText(text, startX, startY);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
 
-    for(let y=0;y<canvas.height;y+=8){
-        for(let x=0;x<canvas.width;x+=8){
-            const index = (y*canvas.width + x)*4;
-            if(pixels[index+3]>128){
-                if(Math.random()<0.01){
-                    rockets.push(new Rocket(x,canvas.height,"hsl("+Math.random()*360+",100%,60%)"));
+            for (let y = 0; y < canvas.height; y += 8) {
+                for (let x = 0; x < canvas.width; x += 8) {
+                    const index = (y * canvas.width + x) * 4;
+                    if (pixels[index + 3] > 128) {
+                        if (Math.random() < 0.01) {
+                            rockets.push(new Rocket(x, canvas.height, "hsl(" + Math.random() * 360 + ",100%,60%)"));
+                        }
+                    }
                 }
             }
         }
-    }
-}
-setInterval(launchHeartText,5000);
+        setInterval(launchHeartText, 5000);
 
-animate();
-</script>
+        animate();
+    </script>
 
 </body>
+
 </html>
