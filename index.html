@@ -124,8 +124,6 @@ h2 { font-size: 1.2rem; font-weight: 300; }
 /* ========= MUSIC AUTO-PLAY FIX ========= */
 const music = document.getElementById("bgMusic");
 music.volume = 0.7;
-
-// Attempt to play immediately
 window.addEventListener("load", ()=>{
     music.muted = false; // unmute
     const playPromise = music.play();
@@ -138,15 +136,16 @@ window.addEventListener("load", ()=>{
     }
 });
 
-/* ========= FIREWORKS + HEART/TEXT ========= */
+/* ========= FIREWORKS + HEARTS + FLOATING LOVE ========= */
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
 function resize(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
 resize(); window.addEventListener("resize",resize);
 
-let rockets=[], particles=[];
+let rockets=[], particles=[], hearts=[];
 
+/* Rocket Class */
 function Rocket(x, y, color){
     this.x = x || Math.random()*canvas.width;
     this.y = y || canvas.height;
@@ -160,7 +159,6 @@ Rocket.prototype.update=function(){
     if(this.y <= this.explodeY){ explode(this.x,this.y,this.color); return true; }
     return false;
 }
-
 Rocket.prototype.draw=function(){
     ctx.beginPath();
     ctx.arc(this.x,this.y,3,0,Math.PI*2);
@@ -183,41 +181,35 @@ function explode(x,y,color){
     }
 }
 
-/* Heart shape coordinates */
-function heartShape(t, scale=10){
-    const x = scale * 16 * Math.pow(Math.sin(t),3);
-    const y = -scale*(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));
-    return [x + canvas.width/2, y + canvas.height/3];
+/* Floating hearts class */
+function FloatingHeart(){
+    this.x = Math.random()*canvas.width;
+    this.y = canvas.height + 20;
+    this.vx = (Math.random()-0.5)*1.5;
+    this.vy = -Math.random()*1.5 - 0.5;
+    this.size = Math.random()*8+6;
+    this.alpha = Math.random()*0.6+0.4;
+}
+FloatingHeart.prototype.update = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.alpha -= 0.002;
+    if(this.alpha <=0) return true;
+    return false;
+}
+FloatingHeart.prototype.draw = function(){
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.beginPath();
+    ctx.moveTo(this.x,this.y);
+    ctx.bezierCurveTo(this.x,this.y-this.size/2,this.x+this.size,this.y-this.size/2,this.x,this.y);
+    ctx.bezierCurveTo(this.x-this.size,this.y+this.size/2,this.x,this.y+this.size/2,this.x,this.y);
+    ctx.fillStyle = "pink";
+    ctx.fill();
+    ctx.restore();
 }
 
-/* Draw LOVE 2026 text by shooting rockets along each letter */
-function launchHeartText(){
-    const text = "LOVE 2026";
-    ctx.font = "bold 60px Arial";
-    ctx.fillStyle = "white";
-    const metrics = ctx.measureText(text);
-    const startX = canvas.width/2 - metrics.width/2;
-    const startY = canvas.height/4;
-
-    // Sample points from text to launch rockets
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillText(text,startX,startY);
-    const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
-    const pixels = imageData.data;
-
-    for(let y=0;y<canvas.height;y+=8){
-        for(let x=0;x<canvas.width;x+=8){
-            const index = (y*canvas.width + x)*4;
-            if(pixels[index+3]>128){
-                if(Math.random()<0.01){
-                    rockets.push(new Rocket(x,canvas.height,"hsl("+Math.random()*360+",100%,60%)"));
-                }
-            }
-        }
-    }
-}
-
-/* Animate */
+/* Animate everything */
 function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
@@ -237,12 +229,44 @@ function animate(){
         if(p.life<=0) particles.splice(i,1);
     });
 
+    hearts.forEach((h,i)=>{
+        if(h.update()) hearts.splice(i,1);
+        else h.draw();
+    });
+
     requestAnimationFrame(animate);
 }
 
-/* Launch rockets randomly + heart/text effect */
+/* Launch rockets and floating hearts */
 setInterval(()=>rockets.push(new Rocket()),900);
-setInterval(launchHeartText,5000); // every 5s, launch LOVE 2026 rockets
+setInterval(()=>hearts.push(new FloatingHeart()),200); // hearts spawn frequently
+
+/* Launch rockets in heart/text shape */
+function launchHeartText(){
+    const text = "LOVE 2026";
+    ctx.font = "bold 60px Arial";
+    ctx.fillStyle = "white";
+    const metrics = ctx.measureText(text);
+    const startX = canvas.width/2 - metrics.width/2;
+    const startY = canvas.height/4;
+
+    ctx.fillText(text,startX,startY);
+    const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    const pixels = imageData.data;
+
+    for(let y=0;y<canvas.height;y+=8){
+        for(let x=0;x<canvas.width;x+=8){
+            const index = (y*canvas.width + x)*4;
+            if(pixels[index+3]>128){
+                if(Math.random()<0.01){
+                    rockets.push(new Rocket(x,canvas.height,"hsl("+Math.random()*360+",100%,60%)"));
+                }
+            }
+        }
+    }
+}
+setInterval(launchHeartText,5000);
+
 animate();
 </script>
 
